@@ -37,7 +37,14 @@ birthdaySong.addEventListener('error', () => {
   musicStatus.textContent = 'Add wave-to-earth-love.mp3 beside index.html to play the song.';
 });
 birthdaySong.addEventListener('loadedmetadata', () => {
-  musicStatus.textContent = 'Loaded · plays on repeat';
+  musicStatus.textContent = birthdaySong.paused ? 'Loaded · tap Play to listen' : 'Playing · plays on repeat';
+});
+birthdaySong.addEventListener('playing', () => {
+  musicStatus.textContent = 'Playing · plays on repeat';
+});
+
+birthdaySong.play().catch(() => {
+  musicStatus.textContent = 'Tap Play to start the birthday song';
 });
 
 function resizeCanvas() {
